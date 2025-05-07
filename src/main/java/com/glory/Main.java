@@ -12,7 +12,7 @@ public class Main {
         album.addSong("Getting older",4.5);
         album.addSong("My future", 3.5);
         album.addSong("Your power", 5.0);
-        album.addSong(album);
+        albums.add(album);
 
         album = new Album("Album2", "Worships");
 
@@ -26,8 +26,8 @@ public class Main {
 
         albums.get(0).addToPlayList("", playList_1);
         albums.get(0).addToPlayList("", playList_1);
-        albums.get(0).addToPlayList("", playList_1);
-        albums.get(0).addToPlayList("", playList_1);
+        albums.get(1).addToPlayList("", playList_1);
+        albums.get(1).addToPlayList("", playList_1);
 
         play(playList_1);
     }
@@ -85,6 +85,45 @@ public class Main {
                         forward = false;
                     }
                     break;
+
+                case 3:
+                    if (forward){
+                        if (listIterator.hasPrevious()){
+                            System.out.println("Now playing " + listIterator.previous().toString());
+                            forward = false;
+                        } else {
+                            System.out.println("we are at the start of the list");
+                        }
+                    } else {
+                        if (listIterator.hasNext()){
+                            System.out.println("now playing " + listIterator.next().toString());
+                            forward = true;
+                        } else {
+                            System.out.println("we have reached the end of the list");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    printList(playList);
+                    break;
+
+                case 5:
+                    printMenu();
+                    break;
+
+                case 6:
+                    if (playList.size() > 0){
+                        listIterator.remove();
+                        if (listIterator.hasNext()){
+                            System.out.println("now playing " + listIterator.next().toString());
+
+                        } else {
+                            if (listIterator.hasPrevious())
+                                System.out.println("now playing " + listIterator.previous().toString());
+
+                        }
+                    }
             }
         }
 
